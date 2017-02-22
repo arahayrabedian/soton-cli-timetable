@@ -25,6 +25,9 @@ Sample single lecture slot:
 },
 """
 
+def _format_cell(lecture_data):
+    return lecture_data['title']
+
 def _dict_to_table(lectures, wrap_tight=False):
 
     # parse date and add actual date objects - this makes manipulation easier.
@@ -84,18 +87,26 @@ def _dict_to_table(lectures, wrap_tight=False):
         for hour in range(hours_to_display):
             # TODO: figure out how to deal with multi-hour lectures
             try:
-                current_day.append(daily_lectures[day][hour + earliest_start]['title'])
-            except:
+                current_day.append(
+                    _format_cell(daily_lectures[day][hour + earliest_start])
+                )
+            except KeyError:
                 # no lecture here
                 current_day.append("")
 
     # now format it correctly for table.
     display = [
-        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        ['Time/Day', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
     ]
+
+    times = []
+    for time in range(earliest_start, latest_end):
+        span_format = "{start:02d}:00 - {end:02d}:00"
+        times.append(span_format.format(start=time, end=time+1))
 
     for row in range(hours_to_display):
         display.append([
+            times[row],
             display_data[0][row],
             display_data[1][row],
             display_data[2][row],

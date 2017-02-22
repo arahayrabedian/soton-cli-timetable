@@ -1,6 +1,6 @@
 import datetime
-import json
-from terminaltables.ascii_table import AsciiTable
+
+from terminaltables import AsciiTable
 
 
 """
@@ -25,8 +25,14 @@ Sample single lecture slot:
 },
 """
 
+
 def _format_cell(lecture_data):
-    return lecture_data['title']
+    return "\n".join([
+        lecture_data['title'],
+        lecture_data['code'],
+        "\n".join(lecture_data['locations'])
+    ])
+
 
 def _dict_to_table(lectures, wrap_tight=False):
 
@@ -67,7 +73,6 @@ def _dict_to_table(lectures, wrap_tight=False):
 
     # now we have each day as a column. yay.
 
-
     # wrap_tight --> find min/max start for the weeks
     if wrap_tight:
         earliest_start = min([lecture['start_time'].hour for lecture in lectures])
@@ -101,7 +106,7 @@ def _dict_to_table(lectures, wrap_tight=False):
 
     times = []
     for time in range(earliest_start, latest_end):
-        span_format = "{start:02d}:00 - {end:02d}:00"
+        span_format = "{start:02d}:00\n-\n{end:02d}:00"
         times.append(span_format.format(start=time, end=time+1))
 
     for row in range(hours_to_display):
@@ -119,4 +124,6 @@ def _dict_to_table(lectures, wrap_tight=False):
 
 def tablify(data):
     table = AsciiTable(_dict_to_table(data))
+    table.inner_row_border = True
+    table.justify_columns[0] = 'center'
     print(table.table)

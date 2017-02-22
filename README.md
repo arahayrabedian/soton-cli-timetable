@@ -16,10 +16,10 @@ if you don't provide a `--password` option, you will be prompted instead.
 
 if you want next week's timetable, use `--nextweek`, creative, I know.
 
-# Limitations / Known Flaws / Bugs
+# Limitations / Known Flaws / Bugs - BEWARE!
 
+- DOES NOT HANDLE MULTI-HOUR SLOTS, THEY WILL APPEAR AS ONE HOUR
 - WILL NOT HANDLE CLASHES - IT WILL ONLY SHOW ONE ITEM, SILENTLY.
-- WILL DUPLICATE SLOTS FOR MULTI-HOUR LECTURES (OR SOMETHING ELSE, I DON'T ACTUALLY KNOW)
 
 # Screenshot
 (please don't come to my classes)

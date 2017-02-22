@@ -5,12 +5,12 @@ import datetime
 import json
 from getpass import getpass
 
-from display import tablify
-from fetching import get_timetable_data
-from fetching import get_session_cookie
+from src.display import tablify
+from src.fetching import get_timetable_data
+from src.fetching import get_session_cookie
 
-if __name__ == '__main__':
 
+def main():
     parser = argparse.ArgumentParser(description='University of Southampton '
                                                  'CLI Timetable')
     parser.add_argument('student_id',
@@ -65,3 +65,7 @@ if __name__ == '__main__':
 
     # awesome, we have our data - now we need to display it.
     tablify(timetable_data)
+
+
+if __name__ == '__main__':
+    main()

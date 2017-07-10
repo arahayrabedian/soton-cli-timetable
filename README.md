@@ -1,10 +1,14 @@
+# STATE - DEPRECATED/BROKEN
+
+This project was already fragile and it was broken with a new login screen ([see issue](https://github.com/arahayrabedian/soton-cli-timetable/issues/6)) - I decided not to fix it. It's also been pulled from `pypi`.
+
 # University of Southampton CLI Timetable
 
 Get your timetable from the comfort of your CLI/shell.
 
 # Installation
 
-`pip install soton-cli-timetable`
+~~`pip install soton-cli-timetable`~~
 
 # Usage
 
